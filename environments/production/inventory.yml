@@ -9,51 +9,54 @@
 all:
   children:
 
-    full:
+    splunk:
       children:
 
-        licensemaster:
-          hosts:
-            my-lm-host:
-
-        dmc:
-          hosts:
-            my-dmc-host:
-
-        shdeployer:
-          hosts:
-            my-shc-deployer:
-          vars:
-            target_shc_group_name: west_coast_shc
-
-        search:
+        full:
           children:
 
-            west_coast_shc:
+            licensemaster:
               hosts:
-                sh-01:
-                sh-02:
-                sh-03:
+                my-lm-host:
 
-        heavyforwarder:
-          hosts:
-            my-hf-01:
-            some-other-hf:
+            dmc:
+              hosts:
+                my-dmc-host:
 
-        standalone:
-            hosts:
-              my-standalone-splunk-server:
-              my-other-standalone-splunk-server:
+            shdeployer:
+              hosts:
+                my-shc-deployer:
+              vars:
+                target_shc_group_name: west_coast_shc
 
-    uf:
-      children:
+            search:
+              children:
 
-        vmware:
-          hosts:
-            my-vm-ware-host-[001:100]:
-          vars:
-            clientName: vmware # Or create a "vmware.yml" file under group_vars and assign clientName there, either works
+                west_coast_shc:
+                  hosts:
+                    sh-01:
+                    sh-02:
+                    sh-03:
 
-        web:
-          hosts:
-            my-web-host-[01-05]:
+            heavyforwarder:
+              hosts:
+                my-hf-01:
+                some-other-hf:
+
+            standalone:
+              hosts:
+                my-standalone-splunk-server:
+                my-other-standalone-splunk-server:
+
+        uf:
+          children:
+
+            vmware:
+              hosts:
+                my-vm-ware-host-[001:100]:
+              vars:
+                clientName: vmware # Or create a "vmware.yml" file under group_vars and assign clientName there, either works
+
+            web:
+              hosts:
+                my-web-host-[01-05]:
